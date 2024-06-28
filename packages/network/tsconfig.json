@@ -1,0 +1,3 @@
+{
+  "extends": ["@autospace/ts-config/library"]
+}

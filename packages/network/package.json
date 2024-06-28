@@ -1,0 +1,42 @@
+{
+  "name": "@autospace/network",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": "true",
+  "scripts": {
+    "generate": "graphql-codegen --config configs/react/codegen.ts",
+    "generate:angular": "graphql-codegen --config configs/angular/codegen.ts"
+  },
+  "dependencies": {
+    "@graphql-typed-document-node/core": "^3.2.0",
+    "apollo-angular": "^7.0.2",
+    "graphql": "^16.9.0"
+  },
+  "devDependencies": {
+    "@angular/core": "^18.0.5",
+    "@autospace/eslint-config": "workspace:^",
+    "@autospace/ts-config": "workspace:^",
+    "@graphql-codegen/cli": "^5.0.2",
+    "@graphql-codegen/client-preset": "^4.3.0",
+    "@graphql-codegen/named-operations-object": "^3.0.0",
+    "@graphql-codegen/typescript": "^4.0.7",
+    "@graphql-codegen/typescript-apollo-angular": "^4.0.0",
+    "@graphql-codegen/typescript-operations": "^4.2.1",
+    "@parcel/watcher": "^2.4.1",
+    "@types/node": "^20.3.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.2"
+  },
+  "eslintConfig": {
+    "ignorePatterns": [
+      "gql/generated.tsx",
+      "gql/generated-angular.ts"
+    ],
+    "extends": [
+      "@autospace/eslint-config/node"
+    ]
+  },
+  "peerDependencies": {
+    "@angular/core": "^18.0.5"
+  }
+}
