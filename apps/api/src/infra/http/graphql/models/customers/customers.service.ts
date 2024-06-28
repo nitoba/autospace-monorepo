@@ -5,7 +5,7 @@ import { PrismaService } from '@/infra/database/prisma/prisma.service'
 
 import { CreateCustomerInput } from './dtos/create-customer.input'
 import { FindManyCustomerArgs, FindUniqueCustomerArgs } from './dtos/find.args'
-import { UpdateCustomerInput } from './dtos/update-Customer.input'
+import { UpdateCustomerInput } from './dtos/update-customer.input'
 
 @Injectable()
 export class CustomersService {

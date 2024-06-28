@@ -10,6 +10,10 @@ type Garage {
   updatedAt: DateTime!
   images: [String!]!
   companyId: Float!
+  company: Company!
+  address: Address
+  slots: [Slot!]!
+  verification: Verification
 }
 
 """
@@ -28,10 +32,33 @@ type Address {
   garage: Garage
 }
 
+type User {
+  uid: ID!
+  name: String!
+  image: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  admin: Admin
+  manager: Manager
+  valet: Valet
+  costumer: Customer
+}
+
+type Verification {
+  createdAt: DateTime!
+  garageId: Float!
+  updatedAt: DateTime!
+  verified: Boolean!
+  adminId: String!
+}
+
 type Admin {
   uid: String!
   createdAt: DateTime!
   updatedAt: DateTime!
+  user: User
+  verifications: [Verification!]!
+  verificationsCount: Float!
 }
 
 type BookingTimeline {
@@ -53,50 +80,6 @@ enum BookingStatus {
   VALET_RETURNED
 }
 
-type ValetAssignment {
-  returnLat: Float
-  returnLng: Float
-  pickupValetId: String
-  returnValetId: String
-  bookingId: Float!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  pickupLat: Float!
-  pickupLng: Float!
-}
-
-type Booking {
-  pricePerHour: Float
-  totalPrice: Float
-  phoneNumber: String
-  passcode: String
-  status: BookingStatus!
-  id: Float!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  startTime: DateTime!
-  endTime: DateTime!
-  vehicleNumber: String!
-  slotId: Float!
-  customerId: String!
-}
-
-type Company {
-  id: ID!
-  displayName: String!
-  description: String!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-}
-
-type User {
-  uid: ID!
-  name: String!
-  image: String
-  createdAt: DateTime!
-  updatedAt: DateTime!
-}
-
 type Customer {
   uid: String!
   createdAt: DateTime!
@@ -116,6 +99,8 @@ type Slot {
   updatedAt: DateTime!
   pricePerHour: Float!
   garageId: Float!
+  bookings: [Booking!]!
+  garage: Garage!
 }
 
 enum SlotType {
@@ -125,12 +110,54 @@ enum SlotType {
   BICYCLE
 }
 
+type ValetAssignment {
+  returnLat: Float
+  returnLng: Float
+  pickupValetId: String
+  returnValetId: String
+  bookingId: Float!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  pickupLat: Float!
+  pickupLng: Float!
+  pickupValet: Valet
+  returnValet: Valet
+}
+
+type Booking {
+  pricePerHour: Float
+  totalPrice: Float
+  phoneNumber: String
+  passcode: String
+  status: BookingStatus!
+  id: Float!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  startTime: DateTime!
+  endTime: DateTime!
+  vehicleNumber: String!
+  slotId: Float!
+  customerId: String!
+  slot: Slot
+  costumer: Customer!
+  valetAssignment: ValetAssignment
+}
+
+type Company {
+  id: ID!
+  displayName: String!
+  description: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
 type Manager {
   displayName: String
   uid: String!
   createdAt: DateTime!
   updatedAt: DateTime!
   companyId: Float!
+  company: Company
 }
 
 type Review {
@@ -143,11 +170,6 @@ type Review {
   garageId: Float!
 }
 
-type LoginOutput {
-  user: User!
-  token: String!
-}
-
 type Valet {
   image: String
   companyId: Float
@@ -158,12 +180,9 @@ type Valet {
   licenseID: String!
 }
 
-type Verification {
-  createdAt: DateTime!
-  garageId: Float!
-  updatedAt: DateTime!
-  verified: Boolean!
-  adminId: String!
+type LoginOutput {
+  user: User!
+  token: String!
 }
 
 type Query {

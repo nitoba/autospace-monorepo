@@ -13,11 +13,11 @@ import { checkRowLevelPermission } from '@/infra/auth/util'
 import { PrismaService } from '@/infra/database/prisma/prisma.service'
 
 import { User } from '../users/entity/user.entity'
-import { CustomersService } from './Customers.service'
+import { CustomersService } from './customers.service'
 import { CreateCustomerInput } from './dtos/create-customer.input'
 import { FindManyCustomerArgs, FindUniqueCustomerArgs } from './dtos/find.args'
-import { UpdateCustomerInput } from './dtos/update-Customer.input'
-import { Customer } from './entity/Customer.entity'
+import { UpdateCustomerInput } from './dtos/update-customer.input'
+import { Customer } from './entity/customer.entity'
 
 @Resolver(() => Customer)
 export class CustomersResolver {
